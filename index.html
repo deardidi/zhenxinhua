@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+				list-style: none;
+			}
+			#wrap{
+				width: 500px;
+				border: 1px solid black;
+				margin: 0 auto;
+			}
+			#window{
+				height: 460px;
+				width: 500px;
+				background: url(img/1.jpg);
+				background-size: 100%;
+				position: relative;
+			}
+			#biaopan{
+				width: 347px;
+				height: 347px;
+				border-radius: 50%;
+				background: url(img/2.png);
+				background-size: 100%;
+				position: absolute;
+				top: 45px;
+				left: 93px;
+				transition: all 5s;
+			}
+			#star{
+				width: 80px;
+				height: 105px;
+				background: url(img/3.png);
+				background-size: 100%;
+				position: absolute;
+				top: 160px;
+				left: 221px;
+				cursor: pointer;
+			}
+			h1{
+				background: red;
+				color: white;
+				padding: 10px;
+				font-size: 20px
+			}
+			#biaopan>div{
+				position: absolute;
+				top: 2px;
+				left: 150px;
+				height: 320px;
+				transform: rotate();
+				color: green;
+				padding-top:20px;
+			}
+			#tip{
+				color: red;
+				font-size: 16px;
+				padding: 10px;
+			}
+			h4{
+				padding: 0 10px;
+			}
+			#con{
+				font-size: 20px;
+				padding: 0 10px;
+			}
+			#zhenxinhua{
+				margin-left: 10px;
+				margin-bottom: 10px;
+			}
+			#tip{
+				color: red;
+				padding: 10px;
+			}
+			#r{
+				margin-left: 10px;
+			}
+			h4{
+				padding: 10px;
+			}
+			#con{
+				font-size: 16px
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<h1>真心话大冒险</h1>
+			<div id="window">
+				<div id="biaopan">
+					<div class="word">真心话</div>
+					<div class="word">大冒险</div>
+					<div class="word">通过</div>
+					<div class="word">真心话</div>
+					<div class="word">大冒险</div>
+					<div class="word">通过</div>
+					<div class="word">大冒险</div>
+				</div>
+				<div id="star"></div>
+
+			</div>
+			<div id="tip">请点击抽奖按钮! </div>
+			<button id="r">我选择真心话</button>
+			<button id="w">我选择大冒险</button>
+			<h4>本轮游戏，你需要完成以下任务：</h4>
+			<div id="con">你的任务是？ </div>
+		</div>
+		<script type="text/javascript">
+			var totle=0;
+			var success=["真心话","大冒险","通过","真心话","大冒险","通过","大冒险"];
+			var newsuccess=success.reverse();
+			var titleA=["说出数组去重的逻辑","说出AJAX的逻辑与原理","说出post和get方式请求的区别"];
+			var titleB=["手动将轮播图的代码敲一遍","通过AJAX获取老师提供的电影信息接口，并且生成HTML页面","写出智能点名系统的代码"];
+			console.log(newsuccess)
+			var word=document.getElementsByClassName("word");
+			for(var i=0;i<word.length;i++){
+				word[i].style.transform="rotate("+(i*360/7+25)+"deg)";
+			}
+			document.getElementById("star").onclick=function(){
+				var num=Math.floor(Math.random()*(4000-2000+1)+2000);
+				totle+=num;
+				document.getElementById("biaopan").style.transform="rotate("+totle+"deg)";
+				setTimeout(getnum,5000)
+				m=Math.floor(totle%360/(360/7))
+			}
+			function getnum(){
+				document.getElementById("tip").innerText=newsuccess[m];
+			}
+			document.getElementById("r").onclick=function(){
+				var titleNum=Math.floor(Math.random()*(titleA.length-1-0+1)+0)
+				document.getElementById("con").innerText=titleA[titleNum]
+			}
+			document.getElementById("w").onclick=function(){
+				var titleNum=Math.floor(Math.random()*(titleB.length-1-0+1)+0)
+				document.getElementById("con").innerText=titleB[titleNum]
+			}
+			
+		</script>
+	</body>
+</html>
